@@ -1,0 +1,39 @@
+# 1. Kutaslab develpers: in the directory containing this meta.yaml file, conda
+#    build this file into an installable (meta)package mkconda like
+#    so, then upload it to the Anaconda kutaslab channel
+#
+#        conda build . -c kutaslab -c defaults -c conda-forge
+#
+#     Notes:
+#         * the channels must be specified in this order, and also
+#           upon user installation
+#
+#         * don't bother with conda metapackage ... works, but no footprints
+#
+# 2. Users: to conda install the package, create a bare environment
+#    with some name and install mkconda (exactly) like so except replace
+#    my_env_name with a reasonable name
+#
+#        conda create --name my_env_name
+#        conda activate my_env_name
+#        conda install mkconda -c kutaslab -c defaults -c conda-forge
+#
+
+package:
+  name: mkconda
+  version: "0.0.0.dev"
+
+requirements:
+  run:
+    - mkpy>=0.1.4
+    - fitgrid>=0.4.4
+    - r-base  
+    - jupyter
+    - r-irkernel
+    - rstudio
+
+test:
+  imports:
+    - mkpy
+    - fitgrid
+    - matplotlib

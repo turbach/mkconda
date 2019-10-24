@@ -1,0 +1,42 @@
+# mkconda requires a current GIT_TOKEN on TravisCI kutaslab/mkconda
+env:
+    - PACKAGE_NAME: mkconda   # for the conda_upload.sh deploy script
+language: minimal
+before_install:
+    - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - source $HOME/miniconda/etc/profile.d/conda.sh && conda activate
+    - hash -r
+    - conda config --set always_yes yes --set changeps1 no
+    - conda info -a
+install:
+    - conda install -q conda-build conda-verify
+    - conda build conda -c kutaslab -c defaults -c conda-forge
+    - conda create --name mkconda_env mkconda -c local -c defaults -c conda-forge
+    - conda activate mkconda_env 
+    - conda list
+    - lscpu
+    - python -c 'import numpy; numpy.show_config()'
+    - python -c "import mkpy; print(mkpy.__version__)"
+    - python -c "import fitgrid; print(fitgrid.__version__)"
+# script:
+# after_success:
+before_deploy:
+    - conda install anaconda-client
+    - conda list
+deploy:
+    - provider: script
+      skip_cleanup: true
+      script: bash ./ci/conda_upload.sh
+      on:
+          all_branches: true
+
+    # - provider: pages
+    #   skip_cleanup: true
+    #   github_token: $GITHUB_TOKEN
+    #   keep-history: true
+    #   on:
+    #       branch: master
+    #   target_branch: gh-pages  # that's the default anyway, just to be explicit
+    #   local_dir: docs/_build/html
+
