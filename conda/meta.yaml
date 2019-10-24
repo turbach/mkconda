@@ -24,10 +24,11 @@ package:
   version: "0.0.0.dev"
 
 requirements:
+  # strict pins for reproducible analyses?
   run:
-    - mkpy>=0.1.4
-    - fitgrid>=0.4.4
-    - r-base  
+    - {{ pin_compatible('mkpy', lower_bound='0.1.5') }}  # mkpy =0.1.5
+    - {{ pin_compatible('fitgrid', lower_bound='0.4.4') }}  # fitgrid =0.4.4
+    - r-base
     - jupyter
     - r-irkernel
     - rstudio
