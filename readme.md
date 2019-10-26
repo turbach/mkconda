@@ -6,14 +6,12 @@ computing packages for Kutas Lab research
 * jupyter, with an R kernel
 * rstudio
 
-Install it into a bare conda environment like so, with a sensible
+Install it into a bare conda environment and activate it like so, with a sensible
 value for `some_env`
 
 ```
-conda create --name some_env -c kutaslab -c defaults -c conda-forge
-conda activate some_env
-conda install mkconda - c kutaslab -c defaults -c conda-forge
+conda create --name some_env mkconda -c kutaslab -c defaults -c r -c conda-forge
 ```
 
-This gets a consistent working environment going. Other packages may
-be install provided the requirements can be satisfied.
+This gets a consistent conda environment going. Other packages may
+be installed provided the requirements can be satisfied.

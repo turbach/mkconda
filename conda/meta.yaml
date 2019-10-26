@@ -21,20 +21,30 @@
 
 package:
   name: mkconda
-  version: "0.0.0"
+  version: "0.0.1"
 
 requirements:
-  # strict pins for reproducible analyses?
+  # hard pins for reproducible analyses
   run:
-    - {{ pin_compatible('mkpy', lower_bound='0.1.5') }}  # mkpy =0.1.5
-    - {{ pin_compatible('fitgrid', lower_bound='0.4.4') }}  # fitgrid =0.4.4
+    - {{ pin_compatible('mkpy', lower_bound='0.1.5', upper_bound='0.1.5' )}}
+    - {{ pin_compatible('fitgrid', lower_bound='0.4.5', upper_bound='0.4.5') }}
     - r-base
+    - tornado
     - jupyter
-    - r-irkernel
     - rstudio
+    - r-irkernel
+    - bottleneck 
+    - numpy  # these should already be satisfied
+    - scipy
+    - pandas 
+    - matplotlib
+    - statsmodels
 
 test:
   imports:
     - mkpy
     - fitgrid
+    - numpy
+    - scipy
+    - statsmodels
     - matplotlib
