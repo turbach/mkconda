@@ -21,7 +21,7 @@
 
 package:
   name: mkconda
-  version: "0.0.1.dev"
+  version: "0.0.1"
 
 requirements:
   # hard pins for reproducible analyses
@@ -33,9 +33,18 @@ requirements:
     - jupyter
     - rstudio
     - r-irkernel
+    - bottleneck 
+    - numpy  # these should already be satisfied
+    - scipy
+    - pandas 
+    - matplotlib
+    - statsmodels
 
 test:
   imports:
     - mkpy
     - fitgrid
+    - numpy
+    - scipy
+    - statsmodels
     - matplotlib
