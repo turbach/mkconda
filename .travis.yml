@@ -13,7 +13,7 @@ install:
     - conda install -q conda-build conda-verify
 #    - bash ./ci/pypi2conda.sh  # wrap pypi packages for conda build see meta.yaml 
     - conda build conda -c kutaslab -c defaults -c conda-forge
-    - conda create --name mkconda_env mkconda -c kutaslab -c defaults -c conda-forge -c local
+    - conda create --name mkconda_env mkconda  -c local -c kutaslab -c defaults -c conda-forge
     - conda activate mkconda_env 
     - conda list
     - lscpu
