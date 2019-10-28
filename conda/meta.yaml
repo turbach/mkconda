@@ -36,6 +36,7 @@ requirements:
     - rstudio
     - r-irkernel
     - bottleneck 
+    - libiconv  # rpy2 needs it, not included, reasons unknown
     - numpy  # these should already be satisfied
     - scipy
     - pandas 
