@@ -30,6 +30,7 @@ requirements:
     - {{ pin_compatible('fitgrid', lower_bound='0.4.5', upper_bound='0.4.5') }}
     - r-base
     - zeromq !=4.2.5  # buggy version in this env
+    - rpy2 <3.0  # else fitgrid fails on py2ri
     - tornado
     - jupyter
     - rstudio
