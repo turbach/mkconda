@@ -40,7 +40,7 @@ requirements:
     - numpy  # these should already be satisfied
     - scipy
     - pandas 
-    - matplotlib
+    - matplotlib >=3.0
     - statsmodels
 
 test:
