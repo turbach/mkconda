@@ -11,7 +11,6 @@ before_install:
     - conda info -a
 install:
     - conda install -q conda-build conda-verify
-#    - bash ./ci/pypi2conda.sh  # wrap pypi packages for conda build see meta.yaml 
     - conda build conda -c kutaslab -c defaults -c conda-forge
     - conda create --name mkconda_env mkconda -c local -c kutaslab -c defaults -c conda-forge
     - conda activate mkconda_env 
@@ -30,14 +29,4 @@ deploy:
       skip_cleanup: true
       script: bash ./ci/conda_upload.sh
       on:
-          all_branches: true
-
-    # - provider: pages
-    #   skip_cleanup: true
-    #   github_token: $GITHUB_TOKEN
-    #   keep-history: true
-    #   on:
-    #       branch: master
-    #   target_branch: gh-pages  # that's the default anyway, just to be explicit
-    #   local_dir: docs/_build/html
-
+        all_branches: true

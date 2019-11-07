@@ -26,8 +26,8 @@ package:
 requirements:
   # hard pins for reproducible analyses
   run:
-    - mkpy ==0.1.6  # {{ pin_compatible('mkpy', lower_bound='0.1.6', upper_bound='0.1.6' )}}
-    - fitgrid ==0.4.6  # {{ pin_compatible('fitgrid', lower_bound='0.4.6', upper_bound='0.4.6') }}
+    - mkpy ==0.1.6
+    - fitgrid ==0.4.6
     - r-base
     - zeromq !=4.2.5  # buggy version in this env
     - rpy2 <3.0  # else fitgrid fails on py2ri
@@ -35,11 +35,11 @@ requirements:
     - jupyter
     # - rstudio  # chokes conda env resolver, TravisCI times out
     - r-irkernel
-    - bottleneck 
+    - bottleneck
     - libiconv  # rpy2 needs it, not included, reasons unknown
     - numpy  # these should already be satisfied
     - scipy
-    - pandas 
+    - pandas
     - matplotlib >=3.0
     - statsmodels
 
