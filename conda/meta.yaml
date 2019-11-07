@@ -21,7 +21,7 @@
 
 package:
   name: mkconda
-  version: "0.0.3"
+  version: "0.0.4.dev0"
 
 requirements:
   # hard pins for reproducible analyses
@@ -33,7 +33,7 @@ requirements:
     - rpy2 <3.0  # else fitgrid fails on py2ri
     - tornado
     - jupyter
-    - rstudio
+    # - rstudio
     - r-irkernel
     - bottleneck 
     - libiconv  # rpy2 needs it, not included, reasons unknown
