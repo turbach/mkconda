@@ -21,14 +21,14 @@
 
 package:
   name: mkconda
-  version: "0.0.4.dev1"
+  version: "0.0.4"
 
 requirements:
   # hard pins for reproducible analyses
   run:
     - mkpy ==0.1.6
     - fitgrid ==0.4.6
-    - blas =1.0  # for fitgrid thread setting, -rstudio +tidyverse promotes
+    - blas =1.0  # 1.0-mkl for fitgrid thread setting, else -rstudio +tidyverse promotes
     - r-base
     - zeromq !=4.2.5  # buggy version in this env
     - rpy2 <3.0  # else fitgrid fails on py2ri
