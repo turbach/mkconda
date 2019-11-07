@@ -33,7 +33,7 @@ requirements:
     - rpy2 <3.0  # else fitgrid fails on py2ri
     - tornado
     - jupyter
-    # - rstudio
+    # - rstudio  # chokes conda env resolver, TravisCI times out
     - r-irkernel
     - bottleneck 
     - libiconv  # rpy2 needs it, not included, reasons unknown
