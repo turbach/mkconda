@@ -34,6 +34,7 @@ requirements:
     - tornado
     - jupyter
     # - rstudio  # chokes conda env resolver, TravisCI times out
+    - r-tidyverse
     - r-irkernel
     - bottleneck
     - libiconv  # rpy2 needs it, not included, reasons unknown
