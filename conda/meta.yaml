@@ -20,19 +20,17 @@
 #
 {% set numpy_pin = "1.16.4" %}  # same as fitgrid
 {% set mkpy_pin = "0.1.6" %}
-{% set fitgrid_pin = "0.4.8" %}
+{% set fitgrid_pin = "0.4.9" %}
 
 package:
   name: mkconda
-  version: "0.0.4"
+  version: "0.0.5"
 
 requirements:
-  # build:
   host:
     - python =3.6
     - mkl  # should be in anaconda by default nowadays
     - blas=1.0  # important, pulls from anaconda w/ MKL, blocks conda-forge openblas
-  # host:
   run:
     - mkpy ={{ mkpy_pin }}
     - fitgrid ={{ fitgrid_pin }}
@@ -46,7 +44,7 @@ requirements:
     - tornado
     - jupyter
     - r-irkernel
-    - bottleneck 
+    - bottleneck
     - libiconv  # rpy2 needs it, not included this env, reason unknown
     - r-tidyverse
     - rstudio
