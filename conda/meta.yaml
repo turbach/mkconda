@@ -19,12 +19,12 @@
 #        conda install mkconda -c kutaslab -c defaults -c conda-forge 
 #
 {% set numpy_pin = "1.16.4" %}  # same as fitgrid
-{% set mkpy_pin = "0.1.6" %}
+{% set mkpy_pin = "0.1.7" %}
 {% set fitgrid_pin = "0.4.9" %}
 
 package:
   name: mkconda
-  version: "0.0.5"
+  version: "0.0.6"
 
 requirements:
   host:
@@ -32,8 +32,8 @@ requirements:
     - mkl  # should be in anaconda by default nowadays
     - blas=1.0  # important, pulls from anaconda w/ MKL, blocks conda-forge openblas
   run:
-    - mkpy ={{ mkpy_pin }}
-    - fitgrid ={{ fitgrid_pin }}
+    - mkpy >={{ mkpy_pin }}
+    - fitgrid >={{ fitgrid_pin }}
     - spudtr
     - numpy ={{ numpy_pin }}
     - numpy-base ={{ numpy_pin }}
