@@ -10,7 +10,7 @@ Install it into a bare conda environment and activate it like so, with a sensibl
 value for `some_env`
 
 ```
-conda create --name some_env mkconda -c kutaslab -c defaults -c r -c conda-forge
+conda create --name some_env mkconda -c kutaslab -c defaults -c conda-forge
 ```
 
 This gets a consistent conda environment going. Other packages may
