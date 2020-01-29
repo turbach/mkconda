@@ -20,23 +20,25 @@
 #
 {% set python_pin = "3.6" %}  # 
 {% set numpy_pin = "1.16.4" %}  # same as fitgrid
-{% set mkpy_pin = "0.2.0" %}  # min version to exclude tests from package
+{% set mkpy_pin = "0.2.1" %}  # min version to exclude tests from package
 {% set spudtr_pin = "0.0.4" %}  # ""   ""
 {% set fitgrid_pin = "0.4.9" %}
 
 package:
   name: mkconda
-  version: "0.0.8"
+  version: "0.0.9"
 
+# above python 3.6.9 pandas 23.5 hdf5 needs explicit import pytables
 requirements:
-  #  host:
-  #    - python=3.6.9   # cap at 3.6.9 else importlib pandas pytable import fails
-  #    - mkl  # should be in anaconda by default nowadays
-  #    - blas=1.0  # important, pulls from anaconda w/ MKL, blocks conda-forge openblas
   build:
-    - python ={{ python_pin }}   # cap at 3.6.9 else importlib pandas pytable import fails
+    - python ={{ python_pin }}  
     - mkl  # should be in anaconda by default nowadays
     - blas=1.0  # important, pulls from anaconda w/ MKL, blocks conda-forge openblas
+  #  when using host the run environment does not respect the python pin ... wtf?
+  #  host:
+  #    - python ==3.6.9   # cap at 3.6.9 else importlib pandas pytable import fails
+  #    - mkl  # should be in anaconda by default nowadays
+  #    - blas=1.0  # important, pulls from anaconda w/ MKL, blocks conda-forge openblas
   run:
     - python ={{ python_pin }}
     - mkl  # should be in anaconda by default nowadays
@@ -56,12 +58,13 @@ requirements:
     - bottleneck
     - libiconv  # rpy2 needs it, not included this env, reason unknown
     - r-tidyverse
+    - r-ez
+    - r-car
     - rstudio
-#    - statsmodels
 #    - numpy  # these should already be satisfied by mkpy and fitgrid
 #    - scipy
 #    - pandas 
-
+#    - statsmodels
 test:
   imports:
     - mkpy
