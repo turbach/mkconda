@@ -1,4 +1,4 @@
-# mkconda 0.0.9 Wed Jan 29 08:11:48 PST 2020
+# mkconda 0.0.10 Thu Jan 30 16:31:29 PST 2020
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
@@ -6,7 +6,7 @@
 https://repo.anaconda.com/pkgs/main/linux-64/_libgcc_mutex-0.1-main.conda
 https://repo.anaconda.com/pkgs/r/linux-64/_r-mutex-1.0.0-anacondar_1.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/blas-1.0-mkl.tar.bz2
-https://repo.anaconda.com/pkgs/main/linux-64/ca-certificates-2019.11.27-0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/ca-certificates-2020.1.1-0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/intel-openmp-2019.4-243.conda
 https://repo.anaconda.com/pkgs/main/linux-64/ld_impl_linux-64-2.33.1-h53a641e_7.conda
 https://repo.anaconda.com/pkgs/main/linux-64/libgfortran-ng-7.3.0-hdf63c60_0.conda
@@ -134,12 +134,12 @@ https://repo.anaconda.com/pkgs/main/linux-64/jupyter_core-4.6.1-py36_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/nose-1.3.7-py36_2.conda
 https://repo.anaconda.com/pkgs/main/linux-64/pango-1.42.4-h049681c_0.conda
 https://repo.anaconda.com/pkgs/main/noarch/pygments-2.5.2-py_0.tar.bz2
-https://repo.anaconda.com/pkgs/main/linux-64/wheel-0.33.6-py36_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/wheel-0.34.1-py36_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/jsonschema-3.2.0-py36_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/jupyter_client-5.3.4-py36_0.conda
-https://repo.anaconda.com/pkgs/main/linux-64/pip-20.0.2-py36_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/pip-20.0.2-py36_1.conda
 https://repo.anaconda.com/pkgs/main/linux-64/pluggy-0.13.1-py36_0.conda
-https://repo.anaconda.com/pkgs/main/noarch/prompt_toolkit-3.0.2-py_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/noarch/prompt_toolkit-3.0.3-py_0.conda
 https://repo.anaconda.com/pkgs/r/linux-64/r-base-3.5.1-h1e0a451_2.conda
 https://repo.anaconda.com/pkgs/main/linux-64/ipython-7.11.1-py36h39e3cac_0.conda
 https://repo.anaconda.com/pkgs/main/noarch/nbformat-5.0.4-py_0.conda
@@ -339,5 +339,5 @@ https://conda.anaconda.org/kutaslab/linux-64/spudtr-0.0.4-0_g4981c4f_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/statsmodels-0.11.0-py36h7b6447c_0.conda
 https://repo.anaconda.com/pkgs/main/noarch/seaborn-0.9.0-pyh91ea838_1.tar.bz2
 https://conda.anaconda.org/kutaslab/linux-64/pymer4-0.6.0-py36_0.tar.bz2
-https://conda.anaconda.org/kutaslab/linux-64/fitgrid-0.4.9-0_g45bd2ca_0.tar.bz2
-file:///tmp/mkconda/conda-bld/linux-64/mkconda-0.0.9-py36h39e3cac_0.tar.bz2
+https://conda.anaconda.org/kutaslab/linux-64/fitgrid-0.4.10-0_g48554ef_0.tar.bz2
+file:///tmp/mkconda/conda-bld/linux-64/mkconda-0.0.10-py36h39e3cac_0.tar.bz2

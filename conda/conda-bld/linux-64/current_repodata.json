@@ -3,13 +3,13 @@
     "subdir": "linux-64"
   },
   "packages": {
-    "mkconda-0.0.9-py36h39e3cac_0.tar.bz2": {
+    "mkconda-0.0.10-py36h39e3cac_0.tar.bz2": {
       "build": "py36h39e3cac_0",
       "build_number": 0,
       "depends": [
         "blas 1.0.*",
         "bottleneck",
-        "fitgrid >=0.4.9",
+        "fitgrid >=0.4.10",
         "jupyter",
         "libiconv",
         "matplotlib >=3.0",
@@ -29,13 +29,13 @@
         "tornado",
         "zeromq !=4.2.5"
       ],
-      "md5": "e71a748d1277eaaac469192040701585",
+      "md5": "fce1aea9523e14fffabe34f2d4b1a643",
       "name": "mkconda",
-      "sha256": "df5116a4546de7245dc38031747fa2d49a9284f29e2654ee948405e1420dd3bf",
-      "size": 149387,
+      "sha256": "effcbd675cc7530eaabcaf8f4819d4b8ee96b0beba59f3082d29faef6250051e",
+      "size": 162665,
       "subdir": "linux-64",
-      "timestamp": 1580313665313,
-      "version": "0.0.9"
+      "timestamp": 1580429956246,
+      "version": "0.0.10"
     }
   },
   "packages.conda": {},
