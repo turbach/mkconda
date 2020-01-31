@@ -16,17 +16,18 @@
 #
 #        conda create --name my_env_name
 #        conda activate my_env_name
-#        conda install mkconda -c kutaslab -c defaults -c conda-forge 
+#        conda install mkconda -c kutaslab -c defaults -c conda-forge
 #
-{% set python_pin = "3.6" %}  # 
+
+{% set python_pin = "3.6" %}
 {% set numpy_pin = "1.16.4" %}  # same as fitgrid
-{% set mkpy_pin = "0.2.1" %}  # min version to exclude tests from package
-{% set spudtr_pin = "0.0.4" %}  # ""   ""
-{% set fitgrid_pin = "0.4.9" %}
+{% set mkpy_pin = "0.2.1" %}
+{% set spudtr_pin = "0.0.4" %}
+{% set fitgrid_pin = "0.4.10" %}
 
 package:
   name: mkconda
-  version: "0.0.9"
+  version: "0.0.10"
 
 # above python 3.6.9 pandas 23.5 hdf5 needs explicit import pytables
 requirements:
