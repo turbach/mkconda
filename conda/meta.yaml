@@ -27,7 +27,7 @@
 
 package:
   name: mkconda
-  version: "0.0.10"
+  version: "0.0.11"
 
 # above python 3.6.9 pandas 23.5 hdf5 needs explicit import pytables
 requirements:
@@ -62,6 +62,7 @@ requirements:
     - r-ez
     - r-car
     - rstudio
+    - mne
 #    - numpy  # these should already be satisfied by mkpy and fitgrid
 #    - scipy
 #    - pandas 
@@ -74,3 +75,4 @@ test:
     - scipy
     - matplotlib
     - statsmodels
+    - mne
