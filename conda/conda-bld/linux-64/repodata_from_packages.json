@@ -30,12 +30,12 @@
         "tornado",
         "zeromq !=4.2.5"
       ],
-      "md5": "faccc87363f75aea7dd0f7b45907c5f8",
+      "md5": "55bc71a9377afc73020614f9f9cc6251",
       "name": "mkconda",
-      "sha256": "ae2ed38c74cb971a40794c8b12f408ac3adc6cb1a62f4bc41fdc0f918074946d",
-      "size": 176018,
+      "sha256": "19e5caccbf9fd2b1cde60362ba3550d83cadbef6ef3c5c26e73fa202dee2c639",
+      "size": 194625,
       "subdir": "linux-64",
-      "timestamp": 1581532830455,
+      "timestamp": 1581540487862,
       "version": "0.0.11"
     }
   },
