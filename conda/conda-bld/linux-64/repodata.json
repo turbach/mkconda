@@ -3,18 +3,19 @@
     "subdir": "linux-64"
   },
   "packages": {
-    "mkconda-0.0.10-py36h39e3cac_0.tar.bz2": {
+    "mkconda-0.0.11-py36h39e3cac_0.tar.bz2": {
       "build": "py36h39e3cac_0",
       "build_number": 0,
       "depends": [
         "blas 1.0.*",
         "bottleneck",
-        "fitgrid >=0.4.10",
+        "fitgrid >=0.4.11",
         "jupyter",
         "libiconv",
         "matplotlib >=3.0",
         "mkl",
-        "mkpy >=0.2.1",
+        "mkpy >=0.2.2",
+        "mne",
         "numpy 1.16.4",
         "numpy-base 1.16.4",
         "python >=3.6,<3.7.0a0",
@@ -25,17 +26,17 @@
         "r-tidyverse",
         "rpy2 <3.0",
         "rstudio",
-        "spudtr >=0.0.4",
+        "spudtr >=0.0.5",
         "tornado",
         "zeromq !=4.2.5"
       ],
-      "md5": "fce1aea9523e14fffabe34f2d4b1a643",
+      "md5": "737bc198109f7d948293c391b55c3167",
       "name": "mkconda",
-      "sha256": "effcbd675cc7530eaabcaf8f4819d4b8ee96b0beba59f3082d29faef6250051e",
-      "size": 162665,
+      "sha256": "26a1540005bea64e8481c16b4358e163d895cec3062d6afed0cbf8f553f13719",
+      "size": 240290,
       "subdir": "linux-64",
-      "timestamp": 1580429956246,
-      "version": "0.0.10"
+      "timestamp": 1594405524354,
+      "version": "0.0.11"
     }
   },
   "packages.conda": {},

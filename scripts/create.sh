@@ -109,10 +109,12 @@ conda build conda --croot ${CROOT}/conda-bld -c kutaslab -c defaults -c conda-fo
 #    mkconda package installed and snapshot the recipe
 # ------------------------------------------------------------
 echo "creating run_env with mkconda-${ver} package installed"
+rm -rf ${CROOT}/run_env  # cleanup any previous
+
 local_channel=file://${CROOT}/conda-bld
 # this works
 # conda create -p ${CROOT}/run_env mkconda=${ver} -c ${local_channel} -c kutaslab -c defaults -c conda-forge -y
-conda create -p ${CROOT}/run_env mkconda=${ver} -c ${local_channel} -c defaults -c kutaslab -c conda-forge -y
+conda create -p ${CROOT}/run_env mkconda=${ver} -c ${local_channel} -c kutaslab -c defaults -c conda-forge -y
 
 # if [[ $(conda create -p ${CROOT}/run_env mkconda=${ver} -c ${local_channel} -c kutaslab -c defaults -c conda-forge -y) ]]; then
 #     echo "OK"
@@ -145,7 +147,6 @@ git rm -f --ignore-unmatch conda/conda-bld/linux-64/mkconda*.tar.bz2  # purge pr
 mkdir -p conda/conda-bld/linux-64
 cp -r ${CROOT}/conda-bld/linux-64/*.* conda/conda-bld/linux-64
 git add conda/conda-bld/linux-64/mkconda*.tar.bz2  # replace with new
-
 
 
 
