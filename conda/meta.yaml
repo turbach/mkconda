@@ -1,6 +1,18 @@
-# 1. Kutaslab develpers: in the directory containing this meta.yaml file, conda
-#    build this file into an installable (meta)package mkconda like
-#    so, then upload it to the Anaconda kutaslab channel
+# 1. Kutaslab develpers: to update mkconda, start a new branch, edit
+#  the meta.yaml packages, pins, and version number, then move up a
+#  directory and run
+#  
+#      make mkconda
+#
+#    This runs a wrapper script that executes the conda build steps
+#    and moves files to where they belong for TravisCI. If it runs,
+#    commit and push the branch to kutaslab/mkconda and see if Travis
+#    runs. If so, pull the new version into master and do a github
+#    release.
+#
+# 
+# 2. To develop, debug, and wrangle dependencies for the build, run
+#    it like then upload it to the Anaconda kutaslab channel
 #
 #        conda build . -c kutaslab -c defaults -c conda-forge
 #
@@ -10,7 +22,7 @@
 #
 #         * don't bother with conda metapackage ... works, but no footprints
 #
-# 2. Users: to conda install the package, create a bare environment
+# 3. Users: to conda install the package, create a bare environment
 #    with some name and install mkconda (exactly) like so except replace
 #    my_env_name with a reasonable name
 #
@@ -21,9 +33,9 @@
 
 {% set python_pin = "3.6" %}
 {% set numpy_pin = "1.16.4" %}  # same as fitgrid
-{% set mkpy_pin = "0.2.1" %}
-{% set spudtr_pin = "0.0.4" %}
-{% set fitgrid_pin = "0.4.10" %}
+{% set mkpy_pin = "0.2.2" %}
+{% set spudtr_pin = "0.0.5" %}
+{% set fitgrid_pin = "0.4.11" %}
 
 package:
   name: mkconda
@@ -32,10 +44,10 @@ package:
 # above python 3.6.9 pandas 23.5 hdf5 needs explicit import pytables
 requirements:
   build:
-    - python ={{ python_pin }}  
+    - python ={{ python_pin }}
     - mkl  # should be in anaconda by default nowadays
     - blas=1.0  # important, pulls from anaconda w/ MKL, blocks conda-forge openblas
-  #  when using host the run environment does not respect the python pin ... wtf?
+  #  when using host, the run environment does not respect the python pin ... wtf?
   #  host:
   #    - python ==3.6.9   # cap at 3.6.9 else importlib pandas pytable import fails
   #    - mkl  # should be in anaconda by default nowadays
