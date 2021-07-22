@@ -1,61 +1,3 @@
-# # mkconda requires a current GIT_TOKEN on TravisCI kutaslab/mkconda
-# env:
-#     - PACKAGE_NAME: mkconda   # for the conda_upload.sh deploy script
-#     # - CROOT: /tmp/mkconda/conda-bld
-# language: minimal
-# before_install:
-#     - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-#     - bash miniconda.sh -b -p $HOME/miniconda
-#     - source $HOME/miniconda/etc/profile.d/conda.sh && conda activate
-#     - hash -r
-#     - conda config --set always_yes yes --set changeps1 no
-#     - conda info -a
-# install:
-#     - conda install -q conda-build conda-verify
-#     - conda clean --all
-#     - mkdir -p /tmp/mkconda/conda-bld
-#     - cp -r ./conda/conda-bld/* /tmp/mkconda/conda-bld
-#     # - conda build conda -c kutaslab -c defaults -c conda-forge
-#     # - conda create --name mkconda_env mkconda -c local -c kutaslab -c defaults -c conda-forge
-#     # build env from recipe file snapshot 
-#     - conda create --name run_env --file ./conda/mkconda_env_recipe.txt
-#     - conda activate run_env
-#     - conda list
-#     - lscpu
-#     - python -c 'import numpy; numpy.show_config()'
-#     - python -c 'import matplotlib; print(matplotlib.__version__)'
-#     - python -c 'import mkpy; print(mkpy.__version__)'
-#     - python -c 'import fitgrid; print(fitgrid.__version__)'
-# after_success:
-#     - git clone https://github.com/kutaslab/mkpy pkgs/mkpy
-#     - cd pkgs/mkpy
-#     - pytest
-#     - cd ../..
-
-#     - git clone https://github.com/kutaslab/spudtr pkgs/spudtr
-#     - cd pkgs/spudtr
-#     - pytest
-#     - cd ../..
-
-#     - git clone https://github.com/kutaslab/fitgrid pkgs/fitgrid
-#     - cd pkgs/fitgrid
-#     - pytest
-#     - cd ../..
-#     - pwd
-#     - ls -l
-
-#     - conda deactivate   # fall back to build env
-# before_deploy:
-#     - conda install anaconda-client
-#     - conda list
-# deploy:
-#     - provider: script
-#       skip_cleanup: true
-#       script: bash ./ci/conda_upload.sh
-#       on:
-#           all_branches: true
-
-
 # Continous integration and deployment (CID) workflow
 #
 # T. Urbach 07/2021
@@ -64,22 +6,16 @@
 #
 # CI:
 #
-#   - conda build, install, and pytest the conda packages linux-64 py3[678]
-#   - conda convert py3[678] x [osx-64, win-64] (untested)
-#   - build sphinx docs
-#   - build python package sdist
+#   - conda build, install, and pytest the conda packages linux-64
 #
 # Deployment:
 #
 #   Development: package version M.N.P.devX on dev branch triggers
 #     - anaconda upload py3X x OS-64 tarballs to channel label /pre-release
-#     - twine python build/sdist to test.pypi.org
 #
 #   Stable release: version M.N.P on release tagged vM.N.P triggers
 #     - anaconda upload py3X x OS-64 tarballs to channel label /main
-#     - codecov
-#     - sphinx docs to gh-pages
-#     - twine python build/sdist to pypi.org
+#
 #
 # Notes:
 #
@@ -230,16 +166,15 @@ jobs:
       - name: >-
           show ${{ env.PACKAGE_NAME }}
           ${{ env.PKG_VERSION }}
-          env_${{ env.PY_VER }}
           deploy_type=${{ env.DEPLOY_TYPE }}
 
         run: |
-          conda activate env_$PY_VER
+          conda activate mkconda_env
           printenv | sort
           conda list --explicit
 
       # pytest Kutas Lab packages
-      - name: test spudtr
+      - name: pytest spudtr
         env:
           TEST_PKG: spudtr
         run: |
@@ -249,7 +184,7 @@ jobs:
           conda activate mkconda_env && pytest
 
       # pytest Kutas Lab packages
-      - name: test fitgrid
+      - name: pytest fitgrid
         env:
           TEST_PKG: fitgrid
         run: |
@@ -259,7 +194,7 @@ jobs:
           conda activate mkconda_env && pytest
 
       # pytest Kutas Lab packages
-      - name: test mkpy
+      - name: pytest mkpy
         env:
           TEST_PKG: mkpy
         run: |
@@ -268,13 +203,13 @@ jobs:
           cd $TEST_PKG
           conda activate mkconda_env && pytest
 
-      # - name: deploy conda package python ${{ env.DEPLOY_TYPE }}
-      #   if: ${{ env.DEPLOY_TYPE == 'pre-release' || env.DEPLOY_TYPE == 'main' }}
-      #   env:
-      #     ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-      #   run: >-
-      #     anaconda
-      #     -t "$ANACONDA_TOKEN"
-      #     upload $CONDA_BLD_PATH/**/${PACKAGE_NAME}*.tar.bz2
-      #     -l $DEPLOY_TYPE
-      #     --skip-existing
+      - name: deploy conda package python ${{ env.DEPLOY_TYPE }}
+        if: ${{ env.DEPLOY_TYPE == 'pre-release' || env.DEPLOY_TYPE == 'main' }}
+        env:
+          ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+        run: >-
+          anaconda
+          -t "$ANACONDA_TOKEN"
+          upload $CONDA_BLD_PATH/**/${PACKAGE_NAME}*.tar.bz2
+          -l $DEPLOY_TYPE
+          --skip-existing
