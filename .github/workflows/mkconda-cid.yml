@@ -124,7 +124,7 @@ defaults:
       bash -l {0}
 
 jobs:
-  conda-ci:
+  cid:
     runs-on: ubuntu-latest
     outputs:
       conda-tarball: ${{ steps.conda-bld.outputs.conda-tarball }}
@@ -165,7 +165,7 @@ jobs:
 
       # ------------------------------------------------------------
       # 2. CI
-      - name: conda mambabuild ${{ env.PY_VER }}
+      - name: conda mambabuild
         id: conda-bld
         run: |
           conda mambabuild --python=$PY_VER -c conda-forge -c defaults -c ejolly -c kutaslab conda
@@ -173,25 +173,19 @@ jobs:
           echo "::set-output name=conda-tarball::$tarball"
 
       # black and pytest in the py3X conda env
-      - name: >-
-          mamba create -n
-          env_${{ env.PY_VER }}
-          python=${{ env.PY_VER }}
-          ${{ env.PACKAGE_NAME}}
-
+      - name: mamba create -n ${{ env.PACKAGE_NAME}}
         run: |
           mamba create -n mkconda_env $PACKAGE_NAME -c $CONDA_BLD_PATH -c conda-forge -c defaults -c ejolly -c kutaslab
+          mamba install -n mkconda_env pytest -c conda-forge
           conda activate mkconda_env
           conda list
           lscpu
           python -c 'import numpy; numpy.show_config()'
 
       # ------------------------------------------------------------
-      # 3. Deploy
+      # 3. Deploy ... linux only b.c. of mkpy cythonization
       #
-      # DEPLOY_TYPE selects conda, python package, and docs uploads
-      #
-      # Only Linux jobs can deply, macOS are all no_deply
+      # DEPLOY_TYPE selects conda package upload destination
       #
       # for regex matching
       # . canonical version strings are M.N.P.devX and M.N.P
@@ -246,11 +240,13 @@ jobs:
 
       # pytest Kutas Lab packages
       - name: test spudtr
+        env:
+          TEST_PKG: spudtr
         run: |
           cd $HOME
-          git clone https://github.com/kutaslab/spudtr spudtr
-          cd spudtr
-          pytest
+          git clone https://github.com/kutaslab/$TEST_PKG $TEST_PKG
+          cd $TEST_PKG
+          conda activate mkconda_env && pytest
 
       # - name: deploy conda package python ${{ matrix.py_ver}} ${{ env.DEPLOY_TYPE }}
       #   if: ${{ env.DEPLOY_TYPE == 'pre-release' || env.DEPLOY_TYPE == 'main' }}
