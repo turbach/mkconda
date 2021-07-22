@@ -1,90 +1,27 @@
-# 1. Kutaslab develpers: to update mkconda, start a new branch, edit
-#  the meta.yaml packages, pins, and version number, then move up a
-#  directory and run
-#  
-#      make mkconda
-#
-#    This runs a wrapper script that executes the conda build steps
-#    and moves files to where they belong for TravisCI. If it runs,
-#    commit and push the branch to kutaslab/mkconda and see if Travis
-#    runs. If so, pull the new version into master and do a github
-#    release.
-#
-# 
-# 2. To develop, debug, and wrangle dependencies for the build, run
-#    it like then upload it to the Anaconda kutaslab channel
-#
-#        conda build . -c kutaslab -c defaults -c conda-forge
-#
-#     Notes:
-#         * at present channel order matters during the build and
-#           user conda install 
-#
-#         * don't bother with conda metapackage ... works, but no footprints
-#
-# 3. Users: to conda install the package, create a bare environment
-#    with some name and install mkconda (exactly) like so except replace
-#    my_env_name with a reasonable name
-#
-#        conda create --name my_env_name
-#        conda activate my_env_name
-#        conda install mkconda -c kutaslab -c defaults -c conda-forge
-#
-
-{% set python_pin = "3.6" %}
-{% set numpy_pin = "1.16.4" %}  # same as fitgrid
-{% set mkpy_pin = "0.2.2" %}
-{% set spudtr_pin = "0.0.5" %}
-{% set fitgrid_pin = "0.4.11" %}
-
 package:
   name: mkconda
-  version: "0.0.11"
+  version: "0.1.0.dev0"
 
-# above python 3.6.9 pandas 23.5 hdf5 needs explicit import pytables
+build:
+  noarch: python
+
 requirements:
-  build:
-    - python ={{ python_pin }}
-    - mkl  # should be in anaconda by default nowadays
-    - blas=1.0  # important, pulls from anaconda w/ MKL, blocks conda-forge openblas
-  #  when using host, the run environment does not respect the python pin ... wtf?
-  #  host:
-  #    - python ==3.6.9   # cap at 3.6.9 else importlib pandas pytable import fails
-  #    - mkl  # should be in anaconda by default nowadays
-  #    - blas=1.0  # important, pulls from anaconda w/ MKL, blocks conda-forge openblas
   run:
-    - python ={{ python_pin }}
-    - mkl  # should be in anaconda by default nowadays
-    - blas=1.0  # important, pulls from anaconda w/ MKL, blocks conda-forge openblas
-    - mkpy >={{ mkpy_pin }}
-    - fitgrid >={{ fitgrid_pin }}
-    - spudtr >={{ spudtr_pin }}
-    - numpy =={{ numpy_pin }}
-    - numpy-base =={{ numpy_pin }}
-    - zeromq !=4.2.5  # buggy version in this env
-    - r-base  # not mro
-    - rpy2 <3.0  # else fitgrid fails on py2ri
-    - matplotlib >=3.0
-    - tornado
-    - jupyter
-    - r-irkernel
-    - bottleneck
-    - libiconv  # rpy2 needs it, not included this env, reason unknown
+    - blas=*=*mkl
+    - fitgrid
+    - spudtr
+    - mkpy
+    - jupyterlab
+    - numba
+    - spyder
+    - rapids
+    - cudatoolkit-dev
+    - pytorch
     - r-tidyverse
-    - r-ez
-    - r-car
-    - rstudio
-    - mne
-#    - numpy  # these should already be satisfied by mkpy and fitgrid
-#    - scipy
-#    - pandas 
-#    - statsmodels
+    - r-irkernel
+
 test:
   imports:
     - mkpy
+    - spudtr
     - fitgrid
-    - numpy
-    - scipy
-    - matplotlib
-    - statsmodels
-    - mne
