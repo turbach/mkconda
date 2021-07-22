@@ -181,7 +181,7 @@ jobs:
           cd $HOME
           git clone https://github.com/kutaslab/$TEST_PKG $TEST_PKG
           cd $TEST_PKG
-          conda activate mkconda_env && pytest
+          conda activate mkconda_env && pytest --disable-warnings
 
       # pytest Kutas Lab packages
       - name: pytest fitgrid
@@ -191,7 +191,7 @@ jobs:
           cd $HOME
           git clone https://github.com/kutaslab/$TEST_PKG $TEST_PKG
           cd $TEST_PKG
-          conda activate mkconda_env && pytest
+          conda activate mkconda_env && pytest --disable-warnings
 
       # pytest Kutas Lab packages
       - name: pytest mkpy
@@ -201,7 +201,7 @@ jobs:
           cd $HOME
           git clone https://github.com/kutaslab/$TEST_PKG $TEST_PKG
           cd $TEST_PKG
-          conda activate mkconda_env && pytest
+          conda activate mkconda_env && pytest --disable-warnings
 
       - name: deploy conda package python ${{ env.DEPLOY_TYPE }}
         if: ${{ env.DEPLOY_TYPE == 'pre-release' || env.DEPLOY_TYPE == 'main' }}
