@@ -248,7 +248,27 @@ jobs:
           cd $TEST_PKG
           conda activate mkconda_env && pytest
 
-      # - name: deploy conda package python ${{ matrix.py_ver}} ${{ env.DEPLOY_TYPE }}
+      # pytest Kutas Lab packages
+      - name: test fitgrid
+        env:
+          TEST_PKG: fitgrid
+        run: |
+          cd $HOME
+          git clone https://github.com/kutaslab/$TEST_PKG $TEST_PKG
+          cd $TEST_PKG
+          conda activate mkconda_env && pytest
+
+      # pytest Kutas Lab packages
+      - name: test mkpy
+        env:
+          TEST_PKG: mkpy
+        run: |
+          cd $HOME
+          git clone https://github.com/kutaslab/$TEST_PKG $TEST_PKG
+          cd $TEST_PKG
+          conda activate mkconda_env && pytest
+
+      # - name: deploy conda package python ${{ env.DEPLOY_TYPE }}
       #   if: ${{ env.DEPLOY_TYPE == 'pre-release' || env.DEPLOY_TYPE == 'main' }}
       #   env:
       #     ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
