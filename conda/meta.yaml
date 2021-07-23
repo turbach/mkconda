@@ -19,6 +19,7 @@ requirements:
     - pytorch
     - r-tidyverse
     - r-irkernel
+    - firefox
 
 test:
   imports:
