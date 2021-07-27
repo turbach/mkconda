@@ -1,10 +1,11 @@
-``mkconda`` is a scientific computing stack containing a set of useful
-Python and R scientific computing conda packages for Kutas Lab GPU
-servers (Xeon CPUS, NVIDIA GPUS), among them:
+``mkconda`` is a scientific computing stack of useful Python and R
+scientific computing conda packages for GPU servers with Intel
+CPUS and NVIDIA GPUS, among them:
 
 * mkpy - Kutas Lab data interchange utilities
 * spudtr - some useful Pandas data transforms
 * fitgrid - multichannel regression modeling
+* MNE Python - EEG/MEG data analysis
 * jupyterlab - Jupyter notebook desktop + Python and R kernels
 * spyder - Python IDE
 * tidyverse - data wrangling utilities in R
@@ -12,6 +13,7 @@ servers (Xeon CPUS, NVIDIA GPUS), among them:
 * rapids - NVIDIA Python GPU accelerators
 * pytorch - tensor library for deep learning
 * numba - CPU and GPU Python acclerators
+* Intel Math Kernel (MKL) library - math libraries optimized for Intel CPUs
 
 
 ## Installation
@@ -29,7 +31,7 @@ channels.
 ```
 
 The mkconda environment comes with Python, R, and over 500 packages
-including MNE Python, matplotlib, seaborn. To see which, install a
+including matplotlib, seaborn. To see which, install a
 mkconda working environment and then run ```conda list```.
 
 If you need additional packages, mamba (or conda) install them into the working
@@ -37,21 +39,24 @@ environment like so:
 
 ```
 (mkconda_072221) $ conda list
-(mkconda_072221) $ mamba install package_a package_b -c conda-forge -c defaults
+(mkconda_072221) $ mamba install -c conda-forge -c defaults package_a package_b ...
 
 ```
 
+### Development mode
 
-### Python package evelopers
-
-Create a development environment by create a working mkconda
-environment, then navigate to the top level of your source code tree
-and install your package in editable (a.k.a. development) mode like
-so:
+To run a mkconda member package in development mode, create a working
+mkconda environment, navigate to where you want the package source
+code to reside, and install the development branch from source into
+the working environment in editable ("development") mode like so:
 
 ```
 (base) $ mamba create --name mkconda_072221 -c conda-forge -c defaults -c ejolly -c kutaslab
 (base) $ conda activate mkconda_072221
+(mkconda_072221) $ cd path/to/local_source_dirs
+(mkconda_072221) $ git clone https://github.com/the_package --single-branch -b the_branch
+(mkconda_072221) $ cd the_package
+(mkconda_072221) $ git checkout the_branch
 (mkconda_072221) $ pip install --no-deps -e .
 (mkconda_072221) $
 ```
