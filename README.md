@@ -1,19 +1,62 @@
-mkconda is a conda metapackage containing a set of linux-64 scientific
-computing packages for Kutas Lab research
+``mkconda`` is a scientific computing stack of useful Python and R
+scientific computing conda packages for GPU servers with Intel
+CPUS and NVIDIA GPUS, among them:
 
-* mkpy
-* fitgrid
-* jupyter, with an R kernel
-* rstudio
+* mkpy - Kutas Lab data interchange utilities
+* spudtr - some useful Pandas data transforms
+* fitgrid - multichannel regression modeling
+* MNE Python - EEG/MEG data analysis
+* jupyterlab - Jupyter notebook desktop + Python and R kernels
+* spyder - Python IDE
+* tidyverse - data wrangling utilities in R
+* cudatoolkit-dev - NVIDIA GPU programming tools
+* rapids - NVIDIA Python GPU accelerators
+* pytorch - tensor library for deep learning
+* numba - CPU and GPU Python acclerators
+* Intel Math Kernel (MKL) library - math libraries optimized for Intel CPUs
 
 
-For best, perhaps only results, install mkconda into a bare conda environment with a sensible name for the conda environment and the desired mkconda N.N.N version number like so:
+## Installation
+ 
+### Users
+
+In a bash terminal window, create a new named mkconda working
+environment like so, with attention to the order of the conda
+channels. 
 
 
 ```
-conda create --name some_env mkconda=N.N.N -c kutaslab -c defaults -c conda-forge
+(base) $ mamba create --name mkconda_072221 -c conda-forge -c defaults -c ejolly -c kutaslab
+(base) $ conda activate mkconda_072221
 ```
 
-> Unless you have a very good reason to do otherwise, use the latest version available on https://anaconda.org/kutaslab/mkconda
+The mkconda environment comes with Python, R, and over 500 packages
+including matplotlib, seaborn. To see which, install a
+mkconda working environment and then run ```conda list```.
 
-This gets a consistent conda environment going. Other packages may be installed provided the requirements can be satisfied.
+If you need additional packages, mamba (or conda) install them into the working
+environment like so:
+
+```
+(mkconda_072221) $ conda list
+(mkconda_072221) $ mamba install -c conda-forge -c defaults package_a package_b ...
+
+```
+
+### Development mode
+
+To run a mkconda member package in development mode, create a working
+mkconda environment, navigate to where you want the package source
+code to reside, and install the development branch from source into
+the working environment in editable ("development") mode like so:
+
+```
+(base) $ mamba create --name mkconda_072221 -c conda-forge -c defaults -c ejolly -c kutaslab
+(base) $ conda activate mkconda_072221
+(mkconda_072221) $ cd path/to/local_source_dirs
+(mkconda_072221) $ git clone https://github.com/the_package --single-branch -b the_branch
+(mkconda_072221) $ cd the_package
+(mkconda_072221) $ git checkout the_branch
+(mkconda_072221) $ pip install --no-deps -e .
+(mkconda_072221) $
+```
