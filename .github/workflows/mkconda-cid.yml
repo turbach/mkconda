@@ -212,4 +212,4 @@ jobs:
           -t "$ANACONDA_TOKEN"
           upload $CONDA_BLD_PATH/**/${PACKAGE_NAME}*.tar.bz2
           -l $DEPLOY_TYPE
-          
+          --skip-existing
