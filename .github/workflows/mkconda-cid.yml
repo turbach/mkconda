@@ -72,7 +72,7 @@ jobs:
       - name: conda setup
         run: |
           # short SHA gets baked into the conda package filename in conda/meta.yaml
-          echo "GIT_ABBREV_COMMIT=_g${GITHUB_SHA:0:8}" >> $GITHUB_ENV
+          echo "GIT_ABBREV_COMMIT=g${GITHUB_SHA:0:8}" >> $GITHUB_ENV
           miniconda_url='https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh';
 
           
@@ -105,7 +105,7 @@ jobs:
         id: conda-bld
         run: |
           conda mambabuild --python=$PY_VER -c conda-forge -c defaults -c ejolly -c kutaslab conda
-          tarball=$(conda build --python=$PY_VER conda --output)
+          tarball=$(conda build conda --output)
           echo "::set-output name=conda-tarball::$tarball"
 
       # black and pytest in the py3X conda env
