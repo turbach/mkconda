@@ -21,13 +21,18 @@ CPUS and NVIDIA GPUS, among them:
 ### Users
 
 In a bash terminal window, create a new named mkconda working
-environment like so, with attention to the order of the conda
-channels. 
-
+environment like so. The order of conda channels is important 
+and if you copy the command make sure the backslash is the last 
+character on the line, no trailing whitespace.
 
 ```
-(base) $ mamba create --name mkconda_072221 -c conda-forge -c defaults -c ejolly -c kutaslab
-(base) $ conda activate mkconda_072221
+mamba create --name mkconda_072221 mkconda \
+    --strict-channel-priority -c conda-forge -c defaults -c ejolly -c kutaslab
+```
+Then you can activate the environment as usual.
+
+```
+conda activate mkconda_072221
 ```
 
 The mkconda environment comes with Python, R, and over 500 packages
