@@ -15,8 +15,9 @@ requirements:
     - jupyterlab
     - numba
     - spyder
-    - rapids=21.08
-    - cudatoolkit-dev=11.2
+    # pending mamba/boa install fix
+    # - rapids
+    # - cudatoolkit-dev
     - pytorch
     - r-tidyverse
     - r-irkernel

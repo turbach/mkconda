@@ -9,8 +9,9 @@ CPUS and NVIDIA GPUS, among them:
 * jupyterlab - Jupyter notebook desktop + Python and R kernels
 * spyder - Python IDE
 * tidyverse - data wrangling utilities in R
-* DROPPED PENDING FIX OF MAMBA INSTALL BUG: ~~cudatoolkit-dev~~
-* rapids - NVIDIA Python GPU accelerators
+# DROPPED PENDING FIX OF cudatoolkit-dev 11.4 MAMBA INSTALL
+* ~~cudatoolkit-dev~~
+* ~~rapids - NVIDIA Python GPU accelerators~~
 * pytorch - tensor library for deep learning
 * numba - CPU and GPU Python acclerators
 * Intel Math Kernel (MKL) library - math libraries optimized for Intel CPUs
