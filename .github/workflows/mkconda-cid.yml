@@ -104,14 +104,14 @@ jobs:
       - name: conda mambabuild
         id: conda-bld
         run: |
-          conda mambabuild --python=$PY_VER -c rapidsai -c nvidia -c conda-forge -c defaults -c ejolly -c kutaslab conda
+          conda mambabuild -c conda-forge -c defaults -c ejolly -c kutaslab conda
           tarball=$(conda build conda --output)
           echo "::set-output name=conda-tarball::$tarball"
 
       # black and pytest in the py3X conda env
       - name: mamba create -n ${{ env.PACKAGE_NAME}}
         run: |
-          mamba create -n mkconda_env $PACKAGE_NAME -c $CONDA_BLD_PATH -c rapidsai -c nvidia -c conda-forge -c defaults -c ejolly -c kutaslab
+          mamba create -n mkconda_env $PACKAGE_NAME -c $CONDA_BLD_PATH -c conda-forge -c defaults -c ejolly -c kutaslab
           mamba install -n mkconda_env pytest -c conda-forge
           conda activate mkconda_env
           conda list
