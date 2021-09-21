@@ -91,7 +91,7 @@ jobs:
           # switch to mamba/boa and conda-forge. Note revised mamba
           # channel priority semantics, strict in 0.14 is flexible in
           # 0.15
-          conda config --add channels conda-forge
+          conda config --add channels rapidsai nvidia conda-forge 
           conda config --set channel_priority flexible  # should be default but enforce
           conda install -n base -q conda-build conda-verify anaconda-client mamba boa
           echo "# ------------------------------------------------------------"
