@@ -16,7 +16,7 @@ requirements:
     - numba
     - spyder
     - rapids
-    - cudatoolkit-dev
+    # - cudatoolkit-dev
     - pytorch
     - r-tidyverse
     - r-irkernel
