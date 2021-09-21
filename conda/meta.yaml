@@ -1,6 +1,6 @@
 package:
   name: mkconda
-  version: "0.1.0"
+  version: "0.1.1"
 
 build:
   noarch: python
@@ -15,8 +15,8 @@ requirements:
     - jupyterlab
     - numba
     - spyder
-    - rapids
-    - cudatoolkit-dev
+    - rapids=21.08
+    - cudatoolkit-dev=11.2
     - pytorch
     - r-tidyverse
     - r-irkernel
