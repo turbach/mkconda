@@ -46,8 +46,9 @@ on:
     types: [published]
 
   schedule:
-    # min hour day month year. digit = when, / = step by, * = all
-    - cron: '0 0 */1 * *'
+    # min hour day of month, day of week = when, / = step by, * = all
+    # weekly on Sunday
+    - cron: '0 0 * * 0'
 
 env:
   PACKAGE_NAME: mkconda
